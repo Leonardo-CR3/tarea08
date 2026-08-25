@@ -1,6 +1,6 @@
 -- SISTEMA : CONTROL DE MULTIFUNCIONALES
 -- BASE DE DATOS : MySQL
--- Adaptacion de 01_create_tables.sql
+-- AUTOR: JENRY PARIONA
 
 CREATE TABLE distrito_fiscal (
 	id_distrito_fiscal INT AUTO_INCREMENT PRIMARY KEY,
