@@ -1,4 +1,4 @@
-package pe.gob.ministeriopublico.backend.model;
+package pe.gob.ministeriopublico.backend.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,5 +39,6 @@ public class AsignacionEquipo {
     @Column(name = "fecha_registro")
     public LocalDateTime fecha_registro;
 
-    public AsignacionEquipo() {}
+    public AsignacionEquipo() {
+    }
 }

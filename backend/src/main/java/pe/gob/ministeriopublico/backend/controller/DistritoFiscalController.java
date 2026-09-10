@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.gob.ministeriopublico.backend.model.DistritoFiscal;
+import pe.gob.ministeriopublico.backend.entity.DistritoFiscal;
 import pe.gob.ministeriopublico.backend.service.DistritoFiscalService;
 
 @RestController

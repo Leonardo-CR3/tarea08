@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.gob.ministeriopublico.backend.model.Clasificacion;
+import pe.gob.ministeriopublico.backend.entity.Clasificacion;
 import pe.gob.ministeriopublico.backend.service.ClasificacionService;
 
 @RestController
@@ -21,21 +21,27 @@ public class ClasificacionController {
 
     private final ClasificacionService service;
 
-    public ClasificacionController(ClasificacionService service){ this.service = service; }
+    public ClasificacionController(ClasificacionService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Clasificacion> list(){ return service.findAll(); }
+    public List<Clasificacion> list() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Clasificacion> get(@PathVariable Integer id){
+    public ResponseEntity<Clasificacion> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Clasificacion create(@RequestBody Clasificacion d){ return service.save(d); }
+    public Clasificacion create(@RequestBody Clasificacion d) {
+        return service.save(d);
+    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Clasificacion> update(@PathVariable Integer id, @RequestBody Clasificacion d){
+    public ResponseEntity<Clasificacion> update(@PathVariable Integer id, @RequestBody Clasificacion d) {
         return service.findById(id).map(existing -> {
             d.id_clasificacion = existing.id_clasificacion;
             return ResponseEntity.ok(service.save(d));
@@ -43,7 +49,8 @@ public class ClasificacionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        service.deleteById(id); return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

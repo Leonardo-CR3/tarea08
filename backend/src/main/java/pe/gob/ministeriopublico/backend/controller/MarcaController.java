@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.gob.ministeriopublico.backend.model.Marca;
+import pe.gob.ministeriopublico.backend.entity.Marca;
 import pe.gob.ministeriopublico.backend.service.MarcaService;
 
 @RestController
@@ -21,21 +21,27 @@ public class MarcaController {
 
     private final MarcaService service;
 
-    public MarcaController(MarcaService service){ this.service = service; }
+    public MarcaController(MarcaService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Marca> list(){ return service.findAll(); }
+    public List<Marca> list() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Marca> get(@PathVariable Integer id){
+    public ResponseEntity<Marca> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Marca create(@RequestBody Marca d){ return service.save(d); }
+    public Marca create(@RequestBody Marca d) {
+        return service.save(d);
+    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Marca> update(@PathVariable Integer id, @RequestBody Marca d){
+    public ResponseEntity<Marca> update(@PathVariable Integer id, @RequestBody Marca d) {
         return service.findById(id).map(existing -> {
             d.id_marca = existing.id_marca;
             return ResponseEntity.ok(service.save(d));
@@ -43,7 +49,8 @@ public class MarcaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        service.deleteById(id); return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

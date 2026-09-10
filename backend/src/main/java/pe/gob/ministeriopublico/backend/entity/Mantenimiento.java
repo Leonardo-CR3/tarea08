@@ -1,4 +1,4 @@
-package pe.gob.ministeriopublico.backend.model;
+package pe.gob.ministeriopublico.backend.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

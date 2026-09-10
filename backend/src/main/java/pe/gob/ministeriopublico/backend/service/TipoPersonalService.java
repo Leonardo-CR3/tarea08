@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import pe.gob.ministeriopublico.backend.model.TipoPersonal;
+import pe.gob.ministeriopublico.backend.entity.TipoPersonal;
 import pe.gob.ministeriopublico.backend.repository.TipoPersonalRepository;
 
 @Service

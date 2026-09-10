@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.gob.ministeriopublico.backend.model.Mantenimiento;
+import pe.gob.ministeriopublico.backend.entity.Mantenimiento;
 import pe.gob.ministeriopublico.backend.service.MantenimientoService;
 
 @RestController
@@ -21,21 +21,27 @@ public class MantenimientoController {
 
     private final MantenimientoService service;
 
-    public MantenimientoController(MantenimientoService service){ this.service = service; }
+    public MantenimientoController(MantenimientoService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Mantenimiento> list(){ return service.findAll(); }
+    public List<Mantenimiento> list() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mantenimiento> get(@PathVariable Integer id){
+    public ResponseEntity<Mantenimiento> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Mantenimiento create(@RequestBody Mantenimiento d){ return service.save(d); }
+    public Mantenimiento create(@RequestBody Mantenimiento d) {
+        return service.save(d);
+    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Mantenimiento> update(@PathVariable Integer id, @RequestBody Mantenimiento d){
+    public ResponseEntity<Mantenimiento> update(@PathVariable Integer id, @RequestBody Mantenimiento d) {
         return service.findById(id).map(existing -> {
             d.id_mantenimiento = existing.id_mantenimiento;
             return ResponseEntity.ok(service.save(d));
@@ -43,7 +49,8 @@ public class MantenimientoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        service.deleteById(id); return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

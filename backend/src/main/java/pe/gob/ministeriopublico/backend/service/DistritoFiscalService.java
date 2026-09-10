@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import pe.gob.ministeriopublico.backend.model.DistritoFiscal;
+import pe.gob.ministeriopublico.backend.entity.DistritoFiscal;
 import pe.gob.ministeriopublico.backend.repository.DistritoFiscalRepository;
 
 @Service

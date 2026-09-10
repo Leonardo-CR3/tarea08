@@ -1,4 +1,4 @@
-package pe.gob.ministeriopublico.backend.model;
+package pe.gob.ministeriopublico.backend.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,5 +24,6 @@ public class Despacho {
     @Column(name = "tipo_proceso", length = 100)
     public String tipo_proceso;
 
-    public Despacho() {}
+    public Despacho() {
+    }
 }

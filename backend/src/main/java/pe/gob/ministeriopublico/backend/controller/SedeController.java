@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.gob.ministeriopublico.backend.model.Sede;
+import pe.gob.ministeriopublico.backend.entity.Sede;
 import pe.gob.ministeriopublico.backend.service.SedeService;
 
 @RestController
@@ -21,21 +21,27 @@ public class SedeController {
 
     private final SedeService service;
 
-    public SedeController(SedeService service){ this.service = service; }
+    public SedeController(SedeService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Sede> list(){ return service.findAll(); }
+    public List<Sede> list() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Sede> get(@PathVariable Integer id){
+    public ResponseEntity<Sede> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Sede create(@RequestBody Sede d){ return service.save(d); }
+    public Sede create(@RequestBody Sede d) {
+        return service.save(d);
+    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Sede> update(@PathVariable Integer id, @RequestBody Sede d){
+    public ResponseEntity<Sede> update(@PathVariable Integer id, @RequestBody Sede d) {
         return service.findById(id).map(existing -> {
             d.id_sede = existing.id_sede;
             return ResponseEntity.ok(service.save(d));
@@ -43,7 +49,8 @@ public class SedeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        service.deleteById(id); return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

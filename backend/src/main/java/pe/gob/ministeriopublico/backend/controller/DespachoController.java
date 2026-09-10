@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.gob.ministeriopublico.backend.model.Despacho;
+import pe.gob.ministeriopublico.backend.entity.Despacho;
 import pe.gob.ministeriopublico.backend.service.DespachoService;
 
 @RestController
@@ -21,21 +21,27 @@ public class DespachoController {
 
     private final DespachoService service;
 
-    public DespachoController(DespachoService service){ this.service = service; }
+    public DespachoController(DespachoService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Despacho> list(){ return service.findAll(); }
+    public List<Despacho> list() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Despacho> get(@PathVariable Integer id){
+    public ResponseEntity<Despacho> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Despacho create(@RequestBody Despacho d){ return service.save(d); }
+    public Despacho create(@RequestBody Despacho d) {
+        return service.save(d);
+    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Despacho> update(@PathVariable Integer id, @RequestBody Despacho d){
+    public ResponseEntity<Despacho> update(@PathVariable Integer id, @RequestBody Despacho d) {
         return service.findById(id).map(existing -> {
             d.id_despacho = existing.id_despacho;
             return ResponseEntity.ok(service.save(d));
@@ -43,7 +49,8 @@ public class DespachoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        service.deleteById(id); return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,4 +1,4 @@
-package pe.gob.ministeriopublico.backend.model;
+package pe.gob.ministeriopublico.backend.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,18 +8,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tipo_personal")
-public class TipoPersonal {
+@Table(name = "clasificacion")
+public class Clasificacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id_tipo_personal;
+    public Integer id_clasificacion;
 
-    @Column(name = "nombre_tipo_personal", length = 100, nullable = false)
-    public String nombre_tipo_personal;
+    @Column(name = "nombre_clasificacion", length = 100, nullable = false)
+    public String nombre_clasificacion;
 
     @Column(length = 250)
     public String descripcion;
 
-    public TipoPersonal() {}
+    public Clasificacion() {
+    }
 }
